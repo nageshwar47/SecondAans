@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>California Cafe Directory</title>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body onload="on_load()">
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12" id="header-wrapper">
+        <div class="container">
+          <div class="row">
+            <div class="col-12" id="header">
+              <h2>California Cafe Directory</h2>
+            </div>
+            <div class="col-12" id="search-wrapper">
+              <input type="text" id="input_box" onkeyup="search()" placeholder="Search your favorite cafes!">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container" id="table-wrapper">
+        <div class="row">
+          <div class="col-12" id="">
+            <table>
+              <thead>
+                <tr class="table100-head">
+                  <th class="column1">S No</th>
+                  <th class="column2">Cafe Name</th>
+                  <th class="column3">Address</th>
+                  <th class="column4">Postal Code</th>
+                  <th class="column5">Lat</th>
+                  <th class="column6">Long</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="column1">1</td>
+                  <td class="column2">Bazaar Cafe</td>
+                  <td class="column3">45250 Worth Avenue, Unit A</td>
+                  <td class="column4">201619</td>
+                  <td class="column5">36.1152</td>
+                  <td class="column6">117.521</td>
+                </tr>
+                <tr>
+                  <td class="column1">2</td>
+                  <td class="column2">Bazaar Cafe</td>
+                  <td class="column3">45250 Worth Avenue, Unit A</td>
+                  <td class="column4">201619</td>
+                  <td class="column5">36.1152</td>
+                  <td class="column6">117.521</td>
+                </tr>
+                <tr>
+                  <td class="column1">3</td>
+                  <td class="column2">Bazaar Cafe</td>
+                  <td class="column3">45250 Worth Avenue, Unit A</td>
+                  <td class="column4">201619</td>
+                  <td class="column5">36.1152</td>
+                  <td class="column6">117.521</td>
+                </tr>
+                <tr>
+                  <td class="column1">4</td>
+                  <td class="column2">Bazaar Cafe</td>
+                  <td class="column3">45250 Worth Avenue, Unit A</td>
+                  <td class="column4">201619</td>
+                  <td class="column5">36.1152</td>
+                  <td class="column6">117.521</td>
+                </tr>
+                <tr>
+                  <td class="column1">5</td>
+                  <td class="column2">Bazaar Cafe</td>
+                  <td class="column3">45250 Worth Avenue, Unit A</td>
+                  <td class="column4">201619</td>
+                  <td class="column5">36.1152</td>
+                  <td class="column6">117.521</td>
+                </tr>
+                <tr>
+                  <td class="column1">6</td>
+                  <td class="column2">Bazaar Cafe</td>
+                  <td class="column3">45250 Worth Avenue, Unit A</td>
+                  <td class="column4">201619</td>
+                  <td class="column5">36.1152</td>
+                  <td class="column6">117.521</td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  let cafe_data = [];
+  let place_data = [];
+  let result = [];
+
+  async function on_load() {
+    let temp_cafe_data = await fetch('https://raw.githubusercontent.com/debojyoti/places-fake-rest-api/master/cafes.json');
+    cafe_data = await (temp_cafe_data.json());
+
+    let temp_place_data = await (fetch('https://raw.githubusercontent.com/debojyoti/places-fake-rest-api/master/places.json'));
+    place_data = await (temp_place_data.json());
+
+    search();
+  }
+
+  function search() {
+    let input_name = document.getElementById('input_box').value;
+    result = cafe_data.cafes.filter(function (item) { return item.name.toLowerCase().includes(input_name.toLowerCase()) });
+    console.table(result);
+   create_table(result);
+  }
+
+  function create_table() {
+
+    // const body = document.getElementById('table-wrapper'),
+    //   tbl = document.createElement('table');
+    // tbl.style.width = '100px';
+    // tbl.style.border = '1px solid black';
+
+    // for (let i = 0; i < result.length; i++) {
+    //   const tr = tbl.insertRow();
+    //   for (let j = 0; j < 6; j++) {
+    //     if (i === (result.length - 1) && j === 5) {
+    //       break;
+    //     } else {
+    //       const td = tr.insertCell();
+    //       td.appendChild(document.createTextNode(`Cell I${i}/J${j}`));
+    //       td.style.border = '1px solid black';
+    //       if (i === 1 && j === 1) {
+    //         td.setAttribute('rowSpan', '2');
+    //       }
+    //     }
+    //   }
+    // }
+    // body.appendChild(tbl);
+
+  }
+</script>
+
+</html>
